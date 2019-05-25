@@ -1,21 +1,25 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react"
+import { View } from "react-native"
+import { Provider } from "react-redux"
+
+// Redux
+import { createStore } from "redux"
+
+// Components
+import NavigationBar from "./components/NavigationBar"
+import middleware from "./middleware"
+import reducer from "./reducers"
+
+const store = createStore(reducer, middleware)
 
 export default class App extends React.Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-      </View>
-    );
+      <Provider store={store}>
+        <View style={{ flex: 1 }}>
+          <NavigationBar />
+        </View>
+      </Provider>
+    )
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
